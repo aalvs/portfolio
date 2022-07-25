@@ -1,6 +1,15 @@
 import React from "react";
 import "./testimonials.css";
 
+// import required modules
+import { Pagination } from "swiper";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
 const data = [
   {
     id: 1,
@@ -13,29 +22,21 @@ const data = [
   {
     id: 2,
     image:
-      "https://media-exp1.licdn.com/dms/image/C4E03AQFrMU0ghKgcHA/profile-displayphoto-shrink_200_200/0/1590506359628?e=1664409600&v=beta&t=BtaaQVkig9HPEpA4SMOH61LApc4en-S9lp_iHbwSCks",
-    name: "Felipe Otelakoski",
-    review:
-      "André é um profissional muito diferenciado, onde com o tempo que passou na Benova trouxe vários insights e melhorias para a agência. Super Recomendo!",
-  },
-  {
-    id: 3,
-    image:
       "https://media-exp1.licdn.com/dms/image/C4D03AQHPXeaNg9IA3Q/profile-displayphoto-shrink_200_200/0/1602708444694?e=1664409600&v=beta&t=ZHfxsN0Fbjgdm8HyFy6Cw21HL3bU5COwZGB6XIa2IkQ",
     name: "Ewerson Santos",
     review:
       "André, excelente profissional, sabe trabalhar em equipe, comunicativo, respeita a opinião de todos e com isso consegue assimilar caminhos mais assertivos, grandes parcerias fizemos trabalhando em conjunto do depto de Markentig e o depto Comercial na Alô Ingressos.",
   },
   {
-    id: 4,
+    id: 3,
     image:
       "https://media-exp1.licdn.com/dms/image/C5603AQHe5Xx1tjoGYg/profile-displayphoto-shrink_200_200/0/1517500507158?e=1664409600&v=beta&t=tV0CdLBQWqFWaoDPKAogBv8Le9-IyuzhdDEi2ruGexs",
     name: "Lucas Konrath",
     review:
-      "Trabalhei diretamente com o André ao longo de praticamente um ano onde pude acompanhar sua evolução individual e também como membro de uma equipe. Desde o inicio demonstrando versatilidade e entendimento das necessidades do projeto fazendo o necessário para seguirmos evoluindo, sempre educado e humildade na hora de receber feedbacks.",
+      "Trabalhei diretamente com o André ao longo de praticamente um ano, desde o inicio demonstrando versatilidade e entendimento das necessidades do projeto fazendo o necessário para seguirmos evoluindo, sempre educado e humildade na hora de receber feedbacks.",
   },
   {
-    id: 5,
+    id: 4,
     image:
       "https://media-exp1.licdn.com/dms/image/C4D03AQFiLPDL1m5QOw/profile-displayphoto-shrink_200_200/0/1658767299436?e=1664409600&v=beta&t=Ycc1daTr3WPlE9dOFHJoex1ForU_AW1S5tU045ixqsk",
     name: "Pedro Melo",
@@ -50,19 +51,26 @@ const Testimonials = () => {
       <h5>LinkedIn Recommendations</h5>
       <h2>Testimonials</h2>
 
-      <div className="container testimonials_container">
+      <Swiper
+        className="container testimonials_container"
+        // install Swiper modules
+        modules={[Pagination]}
+        spaceBetween={40}
+        slidesPerView={1}
+        pagination={{ clickable: true }}
+      >
         {data.map(({ id, image, name, review }) => {
           return (
-            <article className="testimonial">
+            <SwiperSlide className="testimonial">
               <div className="testimonial_avatar">
                 <img src={image} alt={name} />
               </div>
               <h5>{name}</h5>
               <small className="testimonial_review">{review}</small>
-            </article>
+            </SwiperSlide>
           );
         })}
-      </div>
+      </Swiper>
     </section>
   );
 };
